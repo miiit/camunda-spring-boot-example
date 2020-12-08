@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1ddbweg" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.6.0">
+  <bpmn:process id="BoundaryEventCaseProcess" isExecutable="true">
+    <bpmn:startEvent id="StartProcess">
+      <bpmn:outgoing>SequenceFlow_0bioy8v</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="EndProcess">
+      <bpmn:incoming>SequenceFlow_1uyctok</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1uyctok" sourceRef="TestTask" targetRef="EndProcess" />
+    <bpmn:sequenceFlow id="SequenceFlow_0bioy8v" sourceRef="StartProcess" targetRef="TestTask" />
+    <bpmn:sequenceFlow id="SequenceFlow_14boou9" sourceRef="IntermediateThrowEvent" targetRef="EndEvent" />
+    <bpmn:endEvent id="EndEvent">
+      <bpmn:incoming>SequenceFlow_14boou9</bpmn:incoming>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_0v5ee0y" errorRef="Error_18cckpo" />
+    </bpmn:endEvent>
+    <bpmn:boundaryEvent id="IntermediateThrowEvent" attachedToRef="TestTask">
+      <bpmn:outgoing>SequenceFlow_14boou9</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_0culf23" errorRef="Error_18cckpo" />
+    </bpmn:boundaryEvent>
+    <bpmn:task id="TestTask" name="Test Task" camunda:asyncBefore="true">
+      <bpmn:incoming>SequenceFlow_0bioy8v</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1uyctok</bpmn:outgoing>
+    </bpmn:task>
+  </bpmn:process>
+  <bpmn:error id="Error_18cckpo" name="testErr" errorCode="testErr" camunda:errorMessage="testErr" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="BoundaryEventCaseProcess">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartProcess">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1hkiy2y_di" bpmnElement="EndProcess">
+        <dc:Bounds x="422" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1uyctok_di" bpmnElement="SequenceFlow_1uyctok">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="422" y="117" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="525" y="76" width="77" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0bioy8v_di" bpmnElement="SequenceFlow_0bioy8v">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_14boou9_di" bpmnElement="SequenceFlow_14boou9">
+        <di:waypoint x="350" y="175" />
+        <di:waypoint x="350" y="200" />
+        <di:waypoint x="422" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1pm0ulj_di" bpmnElement="EndEvent">
+        <dc:Bounds x="422" y="182" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BoundaryEvent_11wgdad_di" bpmnElement="IntermediateThrowEvent">
+        <dc:Bounds x="332" y="139" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0noup8p_di" bpmnElement="TestTask">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
